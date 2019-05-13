@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+Copyright © MageWorx. All rights reserved.
+See LICENSE.txt for license details.
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Ui/etc/ui_configuration.xsd">
+    <columns name="mageworx_shippingrules_rates_columns">
+        <column name="volume_weight_from">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="align" xsi:type="string">left</item>
+                    <item name="label" xsi:type="string" translate="true">Volume Weight From</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="sortOrder" xsi:type="number">101</item>
+                    <item name="editor" xsi:type="string">text</item>
+                </item>
+            </argument>
+        </column>
+        <column name="volume_weight_to">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="align" xsi:type="string">left</item>
+                    <item name="label" xsi:type="string" translate="true">Volume Weight To</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="sortOrder" xsi:type="number">102</item>
+                    <item name="editor" xsi:type="string">text</item>
+                </item>
+            </argument>
+        </column>
+    </columns>
+</listing>

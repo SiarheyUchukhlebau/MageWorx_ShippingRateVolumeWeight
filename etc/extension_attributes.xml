@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <!-- Rate Extension -->
+    <extension_attributes for="MageWorx\ShippingRules\Api\Data\RateInterface">
+        <attribute code="volume_weight_from" type="string">
+            <join reference_table="mageworx_shippingrules_rates_volume_weight" reference_field="rate_id" join_on_field="rate_id">
+                <field>volume_weight_from</field>
+            </join>
+        </attribute>
+        <attribute code="volume_weight_to" type="string">
+            <join reference_table="mageworx_shippingrules_rates_volume_weight" reference_field="rate_id" join_on_field="rate_id">
+                <field>volume_weight_to</field>
+            </join>
+        </attribute>
+    </extension_attributes>
+</config>

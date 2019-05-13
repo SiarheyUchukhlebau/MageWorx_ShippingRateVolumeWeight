@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!-- Add Extension Attributes to the Rates Collection -->
+    <event name="mageworx_shippingrules_rate_save_after">
+        <observer
+                name="mageworx_save_volume_weight_attribute"
+                instance="MageWorx\ShippingRateVolumeWeight\Observer\SaveVolumeWeightRateAttribute"
+        />
+    </event>
+    <event name="rates_collection_render_filters_before">
+        <observer
+                name="mageworx_add_volume_weight_attribute"
+                instance="MageWorx\ShippingRateVolumeWeight\Observer\AddVolumeWeightToRatesCollection"
+        />
+    </event>
+    <event name="mageworx_suitable_rates_collection_load_before">
+        <observer
+                name="mageworx_filter_rates_by_volume_weight_attribute"
+                instance="MageWorx\ShippingRateVolumeWeight\Observer\FilterRatesCollectionByVolumeWeightAttribute"
+        />
+    </event>
+    <event name="mageworx_rates_export_collection_join_linked_tables_after">
+        <observer
+                name="mageworx_join_volume_weight_table_to_export_rates_collection"
+                instance="MageWorx\ShippingRateVolumeWeight\Observer\JoinVolumeWeightTableToExportRatesCollection"
+        />
+    </event>
+    <event name="mageworx_filter_rates_data_before_insert">
+        <observer
+                name="mageworx_remove_volume_weight_before_insert"
+                instance="MageWorx\ShippingRateVolumeWeight\Observer\RemoveVolumeWeightBeforeInsert"
+        />
+    </event>
+    <event name="mageworx_shippingrules_import_insert_rates">
+        <observer
+                name="mageworx_shippingrules_import_insert_update_volume_weight"
+                instance="MageWorx\ShippingRateVolumeWeight\Observer\InsertUpdateVolumeWeightDuringImport"
+        />
+    </event>
+</config>
