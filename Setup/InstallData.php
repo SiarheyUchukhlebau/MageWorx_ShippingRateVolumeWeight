@@ -78,7 +78,7 @@ class InstallData implements InstallDataInterface
                     'is_html_allowed_on_front' => true,
                     'visible_on_front'         => true,
                     'system'                   => 0,
-                    'default'                  => 1,
+                    'default'                  => null,
                     'user_defined'             => false // should be false to prevent deleting from admin-side interface
                 ]
             );
