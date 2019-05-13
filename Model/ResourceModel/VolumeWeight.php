@@ -44,4 +44,21 @@ class VolumeWeight extends AbstractDb
 
         return $rowsAffected;
     }
+
+    /**
+     * @param $rateId
+     * @return int
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function deleteRecord($rateId)
+    {
+        $rowsAffected = $this->getConnection()->delete(
+            $this->getMainTable(),
+            [
+                'rate_id = ?' => $rateId
+            ]
+        );
+
+        return $rowsAffected;
+    }
 }

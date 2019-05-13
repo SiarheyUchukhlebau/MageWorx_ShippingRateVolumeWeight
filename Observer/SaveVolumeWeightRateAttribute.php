@@ -39,7 +39,7 @@ class SaveVolumeWeightRateAttribute implements ObserverInterface
         \MageWorx\ShippingRateVolumeWeight\Model\ResourceModel\VolumeWeight $resource,
         \Magento\Framework\Message\ManagerInterface $messagesManager
     ) {
-        $this->resource = $resource;
+        $this->resource        = $resource;
         $this->messagesManager = $messagesManager;
     }
 
@@ -55,14 +55,28 @@ class SaveVolumeWeightRateAttribute implements ObserverInterface
             return;
         }
 
-        $volumeWeightFrom = $model->getData('volume_weight_from');
-        $volumeWeightTo = $model->getData('volume_weight_to');
+        $volumeWeightFrom = $model->getData('volume_weight_from') !== '' ? $model->getData('volume_weight_from') : null;
+        $volumeWeightTo   = $model->getData('volume_weight_to') !== '' ? $model->getData('volume_weight_to') : null;
 
-        try {
-            $this->resource->insertUpdateRecord($model->getRateId(), $volumeWeightFrom, $volumeWeightTo);
-        } catch (LocalizedException $exception) {
-            $this->messagesManager->addErrorMessage(__('Unable to save the Volume Weight for the Rate %1', $model->getRateId()));
+
+        if ($volumeWeightFrom === null && $volumeWeightTo === null) {
+            try {
+                $this->resource->deleteRecord($model->getRateId());
+            } catch (LocalizedException $deleteException) {
+                $this->messagesManager->addErrorMessage(
+                    __('Unable to delete the Volume Weight for the Rate %1', $model->getRateId())
+                );
+            }
+        } else {
+            try {
+                $this->resource->insertUpdateRecord($model->getRateId(), $volumeWeightFrom, $volumeWeightTo);
+            } catch (LocalizedException $saveException) {
+                $this->messagesManager->addErrorMessage(
+                    __('Unable to save the Volume Weight for the Rate %1', $model->getRateId())
+                );
+            }
         }
+
 
         return;
     }
