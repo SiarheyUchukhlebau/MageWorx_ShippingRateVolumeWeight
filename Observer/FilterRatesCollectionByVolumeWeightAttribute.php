@@ -42,7 +42,7 @@ class FilterRatesCollectionByVolumeWeightAttribute implements ObserverInterface
         }
 
         /** @var \Magento\Quote\Model\Quote\Item[] $items */
-        $items        = $request->getAllItems();
+        $items        = $request->getAllItems() ?? [];
         $volumeWeight = 0;
         foreach ($items as $item) {
             $volumeWeight += (float)$item->getProduct()->getData('volume_weight') * $item->getQty();
